@@ -17,8 +17,8 @@ public class EmployeeService extends c1 {
 	public EmployeeService() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			conn = DriverManager.getConnection(p.getProperty("url"), p.getProperty("username"),
-					p.getProperty("password"));
+			conn = DriverManager.getConnection(property.getProperty("url"), property.getProperty("username"),
+					property.getProperty("password"));
 		} catch (SQLException | ClassNotFoundException e) {
 			c1.LOG.log(Level.SEVERE, e.getMessage());
 		}
