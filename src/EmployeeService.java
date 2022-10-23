@@ -1,13 +1,10 @@
 
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
+import java.sql.*;
 
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.logging.Level;
 
 public class EmployeeService extends c1 {
 
@@ -22,8 +19,9 @@ public class EmployeeService extends c1 {
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(p.getProperty("url"), p.getProperty("username"),
 					p.getProperty("password"));
-		} catch (Exception e) {
-		} 
+		} catch (SQLException | ClassNotFoundException e) {
+			c1.LOG.log(Level.SEVERE, e.getMessage());
+		}
 	}
 
 	public void a2() {

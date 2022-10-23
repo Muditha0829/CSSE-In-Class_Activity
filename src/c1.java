@@ -16,11 +16,8 @@ public class c1 {
 		try {
 			p.load(c2.class.getResourceAsStream("../config/config.properties"));
 		}
-		catch (NullPointerException e) {
+		catch (NullPointerException | IOException e) {
 			c1.LOG.log(Level.SEVERE, e.getMessage());
-		}
-		catch (IOException e) {
-			LOG.log(Level.SEVERE, e.getMessage());
 		}
 	}
 }
