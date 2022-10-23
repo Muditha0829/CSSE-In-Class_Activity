@@ -35,7 +35,7 @@ public class Main {
 			employeeService.addEmployee();
 			employeeService.getEmployeeID("EMP10004");
 			employeeService.deleteEmployee("EMP10001");
-			employeeService.a5();
+			employeeService.getEmployees();
 
 		} catch (TransformerFactoryConfigurationError | Exception e) {
 			c1.LOG.log(Level.SEVERE, e.getMessage());
