@@ -24,28 +24,28 @@ public class EmployeeService extends c1 {
 		}
 	}
 
-	public void a2() {
+	public void getEmployeesFromXML() {
 	//getfromxml
 		try {
 			int s = c3.XMLXPATHS().size();
 			for (int i = 0; i < s; i++) {
 				Map<String, String> l = c3.XMLXPATHS().get(i);
-				Employee EMPLOYEE = new Employee();
-				EMPLOYEE.setEmployeeId(l.get("XpathEmployeeIDKey"));
-				EMPLOYEE.setFullName(l.get("XpathEmployeeNameKey"));
-				EMPLOYEE.setAddress(l.get("XpathEmployeeAddressKey"));
-				EMPLOYEE.setFacultyName(l.get("XpathFacultyNameKey"));
-				EMPLOYEE.setDepartment(l.get("XpathDepartmentKey"));
-				EMPLOYEE.setDesignation(l.get("XpathDesignationKey"));
-				el.add(EMPLOYEE);
-				System.out.println(EMPLOYEE.toString() + "\n");
+				Employee employee = new Employee();
+				employee.setEmployeeId(l.get("XpathEmployeeIDKey"));
+				employee.setFullName(l.get("XpathEmployeeNameKey"));
+				employee.setAddress(l.get("XpathEmployeeAddressKey"));
+				employee.setFacultyName(l.get("XpathFacultyNameKey"));
+				employee.setDepartment(l.get("XpathDepartmentKey"));
+				employee.setDesignation(l.get("XpathDesignationKey"));
+				el.add(employee);
+				System.out.println(employee.toString() + "\n");
 			}
 		} catch (Exception e) {
 			c1.LOG.log(Level.SEVERE, e.getMessage());
 		}
 	}
 
-	public void a3() {
+	public void employeeCreateTable() {
 		//
 		try {
 			Statement s = conn.createStatement();

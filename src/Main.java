@@ -30,8 +30,8 @@ public class Main {
 		try {
 			c3.requestTransform();
 
-			employeeService.a2();
-			employeeService.a3();
+			employeeService.getEmployeesFromXML();
+			employeeService.employeeCreateTable();
 			employeeService.addEmployee();
 			employeeService.getEmployeeID("EMP10004");
 			employeeService.deleteEmployee("EMP10001");
