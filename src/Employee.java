@@ -2,17 +2,20 @@
 
 public class Employee {
 
+	//Properties
 	public String employeeId;
 	public String fullName;
 	public String address;
 	public String facultyName;
 	public String department;
 	public String designation;
+
+	//Getters and Setters
 	public String getEmployeeId() {
 		return employeeId;
 	}
-	public void setEmployeeId(String employeeID) {
-		employeeId = employeeID;
+	public void setEmployeeId(String employeeId) {
+		this.employeeId = employeeId;
 	}
 	public String getFullName() {
 		return fullName;
