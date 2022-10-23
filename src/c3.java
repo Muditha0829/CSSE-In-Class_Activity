@@ -30,7 +30,7 @@ public class c3 extends c1 {
 
 	private static Map<String, String> m = null;
 
-	public static void rEQUESTtRANSFORM() throws Exception {
+	public static void requestTransform() throws Exception {
 
 		Source x = new StreamSource(new File("src/e/EmployeeRequest.xml"));
 		Source s = new StreamSource(new File("src/e/Employee-modified.xsl"));
