@@ -22,8 +22,6 @@ public class a extends c1 {
 
 	private static Connection c;
 
-	private static Statement s;
-
 	private PreparedStatement ps;
 
 	public a() {
@@ -57,7 +55,7 @@ public class a extends c1 {
 
 	public void a3() {
 		try {
-			s = c.createStatement();
+			Statement s = c.createStatement();
 			s.executeUpdate(c2.Q("q2"));
 			s.executeUpdate(c2.Q("q1"));
 		} catch (Exception e) {
@@ -68,8 +66,7 @@ public class a extends c1 {
 		try {
 			ps = c.prepareStatement(c2.Q("q3"));
 			c.setAutoCommit(false);
-			for(int i = 0; i < el.size(); i++){
-				b e = el.get(i);
+			for (b e : el) {
 				ps.setString(1, e.getEmployeeId());
 				ps.setString(2, e.getFullName());
 				ps.setString(3, e.getAddress());
@@ -143,8 +140,7 @@ public class a extends c1 {
 		System.out.println("Employee ID" + "\t\t" + "Full Name" + "\t\t" + "Address" + "\t\t" + "Faculty Name" + "\t\t"
 				+ "Department" + "\t\t" + "Designation" + "\n");
 		System.out.println("================================================================================================================");
-		for(int i = 0; i < l.size(); i++){
-			b e = l.get(i);
+		for (b e : l) {
 			System.out.println(e.getEmployeeId() + "\t" + e.getFullName() + "\t\t"
 					+ e.getAddress() + "\t" + e.getFacultyName() + "\t" + e.getDepartment() + "\t"
 					+ e.getDesignation() + "\n");
