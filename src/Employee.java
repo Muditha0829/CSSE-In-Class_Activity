@@ -1,6 +1,6 @@
 
 
-public class b {
+public class Employee {
 
 	public String employeeId;
 	public String fullName;
@@ -18,31 +18,31 @@ public class b {
 		return fullName;
 	}
 	public void setFullName(String fullName) {
-		fullName = fullName;
+		this.fullName = fullName;
 	}
 	public String getAddress() {
 		return address;
 	}
 	public void setAddress(String address) {
-		address = address;
+		this.address = address;
 	}
 	public String getFacultyName() {
 		return facultyName;
 	}
 	public void setFacultyName(String facultyName) {
-		facultyName = facultyName;
+		this.facultyName = facultyName;
 	}
 	public String getDepartment() {
 		return department;
 	}
 	public void setDepartment(String department) {
-		department = department;
+		this.department = department;
 	}
 	public String getDesignation() {
 		return designation;
 	}
 	public void setDesignation(String designation) {
-		designation = designation;
+		this.designation = designation;
 	}
 
 	@Override

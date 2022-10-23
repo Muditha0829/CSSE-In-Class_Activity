@@ -1,24 +1,17 @@
 
 
-import org.xml.sax.SAXException;
 import java.sql.Connection;
-import java.util.logging.Logger;
 import java.sql.DriverManager;
-import javax.xml.parsers.ParserConfigurationException;
 import java.sql.PreparedStatement;
-import javax.xml.xpath.XPathExpressionException;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.logging.Level;
 import java.sql.Statement;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
 
 public class a extends c1 {
 
-	private final ArrayList<b> el = new ArrayList<b>();
+	private final ArrayList<Employee> el = new ArrayList<Employee>();
 
 	private static Connection c;
 
@@ -39,7 +32,7 @@ public class a extends c1 {
 			int s = c3.XMLXPATHS().size();
 			for (int i = 0; i < s; i++) {
 				Map<String, String> l = c3.XMLXPATHS().get(i);
-				b EMPLOYEE = new b();
+				Employee EMPLOYEE = new Employee();
 				EMPLOYEE.setEmployeeId(l.get("XpathEmployeeIDKey"));
 				EMPLOYEE.setFullName(l.get("XpathEmployeeNameKey"));
 				EMPLOYEE.setAddress(l.get("XpathEmployeeAddressKey"));
@@ -66,7 +59,7 @@ public class a extends c1 {
 		try {
 			ps = c.prepareStatement(c2.Q("q3"));
 			c.setAutoCommit(false);
-			for (b e : el) {
+			for (Employee e : el) {
 				ps.setString(1, e.getEmployeeId());
 				ps.setString(2, e.getFullName());
 				ps.setString(3, e.getAddress());
@@ -83,7 +76,7 @@ public class a extends c1 {
 
 	public void eMPLOYEEGETBYID(String eid) {
 
-		b e = new b();
+		Employee e = new Employee();
 		try {
 			ps = c.prepareStatement(c2.Q("q4"));
 			ps.setString(1, eid);
@@ -96,7 +89,7 @@ public class a extends c1 {
 				e.setDepartment(R.getString(5));
 				e.setDesignation(R.getString(6));
 			}
-			ArrayList<b> l = new ArrayList<b>();
+			ArrayList<Employee> l = new ArrayList<Employee>();
 			l.add(e);
 			eMPLOYEEoUTPUT(l);
 		} catch (Exception ex) {
@@ -116,12 +109,12 @@ public class a extends c1 {
 
 	public void a5() {
 
-		ArrayList<b> l = new ArrayList<b>();
+		ArrayList<Employee> l = new ArrayList<Employee>();
 		try {
 			ps = c.prepareStatement(c2.Q("q5"));
 			ResultSet r = ps.executeQuery();
 			while (r.next()) {
-				b e = new b();
+				Employee e = new Employee();
 				e.setEmployeeId(r.getString(1));
 				e.setFullName(r.getString(2));
 				e.setAddress(r.getString(3));
@@ -135,12 +128,12 @@ public class a extends c1 {
 		eMPLOYEEoUTPUT(l);
 	}
 	
-	public void eMPLOYEEoUTPUT(ArrayList<b> l){
+	public void eMPLOYEEoUTPUT(ArrayList<Employee> l){
 		
 		System.out.println("Employee ID" + "\t\t" + "Full Name" + "\t\t" + "Address" + "\t\t" + "Faculty Name" + "\t\t"
 				+ "Department" + "\t\t" + "Designation" + "\n");
 		System.out.println("================================================================================================================");
-		for (b e : l) {
+		for (Employee e : l) {
 			System.out.println(e.getEmployeeId() + "\t" + e.getFullName() + "\t\t"
 					+ e.getAddress() + "\t" + e.getFacultyName() + "\t" + e.getDepartment() + "\t"
 					+ e.getDesignation() + "\n");
