@@ -2,53 +2,54 @@
 
 public class b {
 
-	public String iDeMPLOYEE;
-	public String nAMEfULL;
-	public String aDDRESS;
-	public String fACULTYnAME;
-	public String dEPARTMENT;
-	public String dESIGNATION;
-	public String EMPLOYEEiDgET() {
-		return iDeMPLOYEE;
+	public String employeeId;
+	public String fullName;
+	public String address;
+	public String facultyName;
+	public String department;
+	public String designation;
+	public String getEmployeeId() {
+		return employeeId;
 	}
-	public void eMPLOYEEiD(String employeeID) {
-		iDeMPLOYEE = employeeID;
+	public void setEmployeeId(String employeeID) {
+		employeeId = employeeID;
 	}
-	public String fULLnAMEgET() {
-		return nAMEfULL;
+	public String getFullName() {
+		return fullName;
 	}
-	public void fULLnAME(String fullName) {
-		nAMEfULL = fullName;
+	public void setFullName(String fullName) {
+		fullName = fullName;
 	}
-	public String aDDRESSgET() {
-		return aDDRESS;
+	public String getAddress() {
+		return address;
 	}
-	public void aDDRESS(String address) {
-		aDDRESS = address;
+	public void setAddress(String address) {
+		address = address;
 	}
-	public String fACULTYnAMEgET() {
-		return fACULTYnAME;
+	public String getFacultyName() {
+		return facultyName;
 	}
-	public void fACULTYNAME(String facultyName) {
-		fACULTYnAME = facultyName;
+	public void setFacultyName(String facultyName) {
+		facultyName = facultyName;
 	}
-	public String dEPARTMENTgET() {
-		return dEPARTMENT;
+	public String getDepartment() {
+		return department;
 	}
-	public void dEPARTMENT(String department) {
-		dEPARTMENT = department;
+	public void setDepartment(String department) {
+		department = department;
 	}
-	public String dESIGNATIONgET() {
-		return dESIGNATION;
+	public String getDesignation() {
+		return designation;
 	}
-	public void dESIGNATION(String designation) {
-		dESIGNATION = designation;
+	public void setDesignation(String designation) {
+		designation = designation;
 	}
+
 	@Override
 	public String toString() {
 		
-		return "Employee ID = " + iDeMPLOYEE + "\n" + "FullName = " + nAMEfULL + "\n" + "Address = " + aDDRESS + "\n"
-				+ "Faculty Name = " + fACULTYnAME + "\n" + "Department = " + dEPARTMENT + "\n" + "Designation = "
-				+ dESIGNATION;
+		return "Employee ID = " + employeeId + "\n" + "FullName = " + fullName + "\n" + "Address = " + address + "\n"
+				+ "Faculty Name = " + facultyName + "\n" + "Department = " + department + "\n" + "Designation = "
+				+ designation;
 	}
 }

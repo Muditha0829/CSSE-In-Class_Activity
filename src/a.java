@@ -42,12 +42,12 @@ public class a extends c1 {
 			for (int i = 0; i < s; i++) {
 				Map<String, String> l = c3.XMLXPATHS().get(i);
 				b EMPLOYEE = new b();
-				EMPLOYEE.eMPLOYEEiD(l.get("XpathEmployeeIDKey"));
-				EMPLOYEE.fULLnAME(l.get("XpathEmployeeNameKey"));
-				EMPLOYEE.aDDRESS(l.get("XpathEmployeeAddressKey"));
-				EMPLOYEE.fACULTYNAME(l.get("XpathFacultyNameKey"));
-				EMPLOYEE.dEPARTMENT(l.get("XpathDepartmentKey"));
-				EMPLOYEE.dESIGNATION(l.get("XpathDesignationKey"));
+				EMPLOYEE.setEmployeeId(l.get("XpathEmployeeIDKey"));
+				EMPLOYEE.setFullName(l.get("XpathEmployeeNameKey"));
+				EMPLOYEE.setAddress(l.get("XpathEmployeeAddressKey"));
+				EMPLOYEE.setFacultyName(l.get("XpathFacultyNameKey"));
+				EMPLOYEE.setDepartment(l.get("XpathDepartmentKey"));
+				EMPLOYEE.setDesignation(l.get("XpathDesignationKey"));
 				el.add(EMPLOYEE);
 				System.out.println(EMPLOYEE.toString() + "\n");
 			}
@@ -70,12 +70,12 @@ public class a extends c1 {
 			c.setAutoCommit(false);
 			for(int i = 0; i < el.size(); i++){
 				b e = el.get(i);
-				ps.setString(1, e.EMPLOYEEiDgET());
-				ps.setString(2, e.fULLnAMEgET());
-				ps.setString(3, e.aDDRESSgET());
-				ps.setString(4, e.fACULTYnAMEgET());
-				ps.setString(5, e.dEPARTMENTgET());
-				ps.setString(6, e.dESIGNATIONgET());
+				ps.setString(1, e.getEmployeeId());
+				ps.setString(2, e.getFullName());
+				ps.setString(3, e.getAddress());
+				ps.setString(4, e.getFacultyName());
+				ps.setString(5, e.getDepartment());
+				ps.setString(6, e.getDesignation());
 				ps.addBatch();
 			}
 			ps.executeBatch();
@@ -92,12 +92,12 @@ public class a extends c1 {
 			ps.setString(1, eid);
 			ResultSet R = ps.executeQuery();
 			while (R.next()) {
-				e.eMPLOYEEiD(R.getString(1));
-				e.fULLnAME(R.getString(2));
-				e.aDDRESS(R.getString(3));
-				e.fACULTYNAME(R.getString(4));
-				e.dEPARTMENT(R.getString(5));
-				e.dESIGNATION(R.getString(6));
+				e.setEmployeeId(R.getString(1));
+				e.setFullName(R.getString(2));
+				e.setAddress(R.getString(3));
+				e.setFacultyName(R.getString(4));
+				e.setDepartment(R.getString(5));
+				e.setDesignation(R.getString(6));
 			}
 			ArrayList<b> l = new ArrayList<b>();
 			l.add(e);
@@ -125,12 +125,12 @@ public class a extends c1 {
 			ResultSet r = ps.executeQuery();
 			while (r.next()) {
 				b e = new b();
-				e.eMPLOYEEiD(r.getString(1));
-				e.fULLnAME(r.getString(2));
-				e.aDDRESS(r.getString(3));
-				e.fACULTYNAME(r.getString(4));
-				e.dEPARTMENT(r.getString(5));
-				e.dESIGNATION(r.getString(6));
+				e.setEmployeeId(r.getString(1));
+				e.setFullName(r.getString(2));
+				e.setAddress(r.getString(3));
+				e.setFacultyName(r.getString(4));
+				e.setDepartment(r.getString(5));
+				e.setDesignation(r.getString(6));
 				l.add(e);
 			}
 		} catch (Exception e) {
@@ -142,15 +142,13 @@ public class a extends c1 {
 		
 		System.out.println("Employee ID" + "\t\t" + "Full Name" + "\t\t" + "Address" + "\t\t" + "Faculty Name" + "\t\t"
 				+ "Department" + "\t\t" + "Designation" + "\n");
-		System.out
-				.println("================================================================================================================");
+		System.out.println("================================================================================================================");
 		for(int i = 0; i < l.size(); i++){
 			b e = l.get(i);
-			System.out.println(e.EMPLOYEEiDgET() + "\t" + e.fULLnAMEgET() + "\t\t"
-					+ e.aDDRESSgET() + "\t" + e.fACULTYnAMEgET() + "\t" + e.dEPARTMENTgET() + "\t"
-					+ e.dESIGNATIONgET() + "\n");
-			System.out
-			.println("----------------------------------------------------------------------------------------------------------------");
+			System.out.println(e.getEmployeeId() + "\t" + e.getFullName() + "\t\t"
+					+ e.getAddress() + "\t" + e.getFacultyName() + "\t" + e.getDepartment() + "\t"
+					+ e.getDesignation() + "\n");
+			System.out.println("----------------------------------------------------------------------------------------------------------------");
 		}
 		
 	}
