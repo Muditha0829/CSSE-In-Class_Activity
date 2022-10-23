@@ -6,14 +6,15 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 
-		a a1 = new a();
+		EmployeeService a1 = new EmployeeService();
+
 		try {
 			c3.requestTransform();
 			a1.a2();
 			a1.a3();
 			a1.a4();
-//			employeeService.eMPLOYEEGETBYID("EMP10004");
-//			employeeService.EMPLOYEEDELETE("EMP10001");
+//			employeeService.getEmployeeID("EMP10004");
+//			employeeService.deleteEmployee("EMP10001");
 			a1.a5();
 		} catch (Exception e) {
 		}
