@@ -25,7 +25,7 @@ public class EmployeeService extends c1 {
 	}
 
 	public void a2() {
-
+	//getfromxml
 		try {
 			int s = c3.XMLXPATHS().size();
 			for (int i = 0; i < s; i++) {
@@ -41,19 +41,23 @@ public class EmployeeService extends c1 {
 				System.out.println(EMPLOYEE.toString() + "\n");
 			}
 		} catch (Exception e) {
+			c1.LOG.log(Level.SEVERE, e.getMessage());
 		}
 	}
 
 	public void a3() {
+		//
 		try {
 			Statement s = conn.createStatement();
 			s.executeUpdate(c2.Q("q2"));
 			s.executeUpdate(c2.Q("q1"));
 		} catch (Exception e) {
+			c1.LOG.log(Level.SEVERE, e.getMessage());
 		}
 	}
 
-	public void a4() {
+	public void addEmployee() {
+		//add employee
 		try {
 			ps = conn.prepareStatement(c2.Q("q3"));
 			conn.setAutoCommit(false);
@@ -69,28 +73,30 @@ public class EmployeeService extends c1 {
 			ps.executeBatch();
 			conn.commit();
 		} catch (Exception e) {
+			c1.LOG.log(Level.SEVERE, e.getMessage());
 		}
 	}
 
 	public void getEmployeeID(String eid) {
 
-		Employee e = new Employee();
+		Employee employee = new Employee();
 		try {
 			ps = conn.prepareStatement(c2.Q("q4"));
 			ps.setString(1, eid);
 			ResultSet R = ps.executeQuery();
 			while (R.next()) {
-				e.setEmployeeId(R.getString(1));
-				e.setFullName(R.getString(2));
-				e.setAddress(R.getString(3));
-				e.setFacultyName(R.getString(4));
-				e.setDepartment(R.getString(5));
-				e.setDesignation(R.getString(6));
+				employee.setEmployeeId(R.getString(1));
+				employee.setFullName(R.getString(2));
+				employee.setAddress(R.getString(3));
+				employee.setFacultyName(R.getString(4));
+				employee.setDepartment(R.getString(5));
+				employee.setDesignation(R.getString(6));
 			}
 			ArrayList<Employee> l = new ArrayList<Employee>();
-			l.add(e);
+			l.add(employee);
 			employeeOutput(l);
-		} catch (Exception ex) {
+		} catch (Exception e) {
+			c1.LOG.log(Level.SEVERE, e.getMessage());
 		}
 	}
 
@@ -102,28 +108,30 @@ public class EmployeeService extends c1 {
 			ps.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
+			c1.LOG.log(Level.SEVERE, e.getMessage());
 		}
 	}
 
-	public void a5() {
-
-		ArrayList<Employee> l = new ArrayList<Employee>();
+	public void getEmployees() {
+	//get employees
+		ArrayList<Employee> employeeList = new ArrayList<Employee>();
 		try {
 			ps = conn.prepareStatement(c2.Q("q5"));
 			ResultSet r = ps.executeQuery();
 			while (r.next()) {
-				Employee e = new Employee();
-				e.setEmployeeId(r.getString(1));
-				e.setFullName(r.getString(2));
-				e.setAddress(r.getString(3));
-				e.setFacultyName(r.getString(4));
-				e.setDepartment(r.getString(5));
-				e.setDesignation(r.getString(6));
-				l.add(e);
+				Employee employee = new Employee();
+				employee.setEmployeeId(r.getString(1));
+				employee.setFullName(r.getString(2));
+				employee.setAddress(r.getString(3));
+				employee.setFacultyName(r.getString(4));
+				employee.setDepartment(r.getString(5));
+				employee.setDesignation(r.getString(6));
+				employeeList.add(employee);
 			}
 		} catch (Exception e) {
+			c1.LOG.log(Level.SEVERE, e.getMessage());
 		}
-		employeeOutput(l);
+		employeeOutput(employeeList);
 	}
 	
 	public void employeeOutput(ArrayList<Employee> l){
@@ -131,10 +139,10 @@ public class EmployeeService extends c1 {
 		System.out.println("Employee ID" + "\t\t" + "Full Name" + "\t\t" + "Address" + "\t\t" + "Faculty Name" + "\t\t"
 				+ "Department" + "\t\t" + "Designation" + "\n");
 		System.out.println("================================================================================================================");
-		for (Employee e : l) {
-			System.out.println(e.getEmployeeId() + "\t" + e.getFullName() + "\t\t"
-					+ e.getAddress() + "\t" + e.getFacultyName() + "\t" + e.getDepartment() + "\t"
-					+ e.getDesignation() + "\n");
+		for (Employee employee : l) {
+			System.out.println(employee.getEmployeeId() + "\t" + employee.getFullName() + "\t\t"
+					+ employee.getAddress() + "\t" + employee.getFacultyName() + "\t" + employee.getDepartment() + "\t"
+					+ employee.getDesignation() + "\n");
 			System.out.println("----------------------------------------------------------------------------------------------------------------");
 		}
 		
