@@ -14,17 +14,24 @@ import javax.xml.transform.TransformerConfigurationException;
 public class c2 extends c1 {
 	
 	public static String Q(String id) throws Exception {
-		NodeList n;
-		Element e = null;
-		n = DocumentBuilderFactory.newInstance().newDocumentBuilder()
+		NodeList nodeList;
+		Element element = null;
+
+		//initialize values which were obtained by the xml file to the Nodelist object
+		nodeList = DocumentBuilderFactory.newInstance().newDocumentBuilder()
 				.parse(new File("src/e/EmployeeQuery.xml"))
 				.getElementsByTagName("query");
-		for (int x = 0; x < n.getLength(); x++) {
-			e = (Element) n.item(x);
-			if (e.getAttribute("id").equals(id))
+
+		/*
+		 * values of NodeList object are assigned to the element object one by one
+		 * check the attribute id
+		 */
+		for (int x = 0; x < nodeList.getLength(); x++) {
+			element = (Element) nodeList.item(x);
+			if (element.getAttribute("id").equals(id))
 				break;
 		}
-		assert e != null;
-		return e.getTextContent().trim();
+		assert element != null;
+		return element.getTextContent().trim();
 	}
 }
