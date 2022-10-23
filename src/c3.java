@@ -29,19 +29,21 @@ public class c3 extends c1 {
 	private static final ArrayList<Map<String, String>> l = new ArrayList<Map<String, String>>();
 
 	private static Map<String, String> m = null;
+	public static String EmployeeRequest = "src/e/EmployeeRequest.xml";
+	public static String EmployeeModified = "src/e/Employee-modified.xml";
+	public static String EmployeeResponse = "src/e/EmployeeRequest.xml";
 
 	public static void requestTransform() throws Exception {
 
-		Source x = new StreamSource(new File("src/e/EmployeeRequest.xml"));
-		Source s = new StreamSource(new File("src/e/Employee-modified.xsl"));
-		Result o = new StreamResult(new File("src/e/EmployeeResponse.xml"));
+		Source x = new StreamSource(new File(EmployeeRequest));
+		Source s = new StreamSource(new File(EmployeeModified));
+		Result o = new StreamResult(new File(EmployeeResponse));
 		TransformerFactory.newInstance().newTransformer(s).transform(x, o);
 	}
 
 	public static ArrayList<Map<String, String>> XMLXPATHS() throws Exception {
 
-		Document d = DocumentBuilderFactory.newInstance().newDocumentBuilder()
-				.parse("src/e/EmployeeResponse.xml");
+		Document d = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(EmployeeRequest);
 		XPath x = XPathFactory.newInstance().newXPath();
 		int n = Integer.parseInt((String) x.compile("count(//Employees/Employee)").evaluate(d, XPathConstants.STRING));
 		for (int i = 1; i <= n; i++) {
