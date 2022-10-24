@@ -1,17 +1,11 @@
 
 
-import javax.xml.transform.TransformerFactoryConfigurationError;
-import javax.xml.transform.TransformerException;
 import java.io.File;
-import org.xml.sax.SAXException;
-import java.io.IOException;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.NodeList;
-import javax.xml.parsers.ParserConfigurationException;
 import org.w3c.dom.Element;
-import javax.xml.transform.TransformerConfigurationException;
 
-public class c2 extends c1 {
+public class UtilityQ extends UtilityL {
 
 	//Initialize Variables
 	public static final String EMPLOYEE_QUERY = "src/b/c/d/EmployeeQuery.xml";

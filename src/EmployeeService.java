@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.logging.Level;
 
-public class EmployeeService extends c1 {
+public class EmployeeService extends UtilityL {
 
 	//Declaring ArrayList for Employees
 	private final ArrayList<Employee> employeeArray = new ArrayList<Employee>();
@@ -26,10 +26,10 @@ public class EmployeeService extends c1 {
 						property.getProperty("password"));
 			}else {
 
-				c1.LOG.info("Connection already exists");
+				UtilityL.LOG.info("Connection already exists");
 			}
 		} catch (SQLException | ClassNotFoundException e) {
-			c1.LOG.log(Level.SEVERE, e.getMessage());
+			UtilityL.LOG.log(Level.SEVERE, e.getMessage());
 		}
 	}
 
@@ -37,9 +37,9 @@ public class EmployeeService extends c1 {
 	public void getEmployeesFromXML() {
 
 		try {
-			int s = c3.xmlPaths().size();
+			int s = UtilityTransform.xmlPaths().size();
 			for (int i = 0; i < s; i++) {
-				Map<String, String> l = c3.xmlPaths().get(i);
+				Map<String, String> l = UtilityTransform.xmlPaths().get(i);
 				Employee employee = new Employee();
 				employee.setEmployeeId(l.get("XpathEmployeeIDKey"));
 				employee.setFullName(l.get("XpathEmployeeNameKey"));
@@ -51,7 +51,7 @@ public class EmployeeService extends c1 {
 				System.out.println(employee.toString() + "\n");
 			}
 		} catch (Exception e) {
-			c1.LOG.log(Level.SEVERE, e.getMessage());
+			UtilityL.LOG.log(Level.SEVERE, e.getMessage());
 		}
 	}
 
@@ -60,10 +60,10 @@ public class EmployeeService extends c1 {
 		//
 		try {
 			Statement s = connection.createStatement();
-			s.executeUpdate(c2.Q("q2"));
-			s.executeUpdate(c2.Q("q1"));
+			s.executeUpdate(UtilityQ.Q("q2"));
+			s.executeUpdate(UtilityQ.Q("q1"));
 		} catch (Exception e) {
-			c1.LOG.log(Level.SEVERE, e.getMessage());
+			UtilityL.LOG.log(Level.SEVERE, e.getMessage());
 		}
 	}
 
@@ -71,7 +71,7 @@ public class EmployeeService extends c1 {
 	public void addEmployee() {
 		//add employee
 		try {
-			preparedStatement = connection.prepareStatement(c2.Q("q3"));
+			preparedStatement = connection.prepareStatement(UtilityQ.Q("q3"));
 			connection.setAutoCommit(false);
 			for (Employee e : employeeArray) {
 				preparedStatement.setString(1, e.getEmployeeId());
@@ -85,7 +85,7 @@ public class EmployeeService extends c1 {
 			preparedStatement.executeBatch();
 			connection.commit();
 		} catch (Exception e) {
-			c1.LOG.log(Level.SEVERE, e.getMessage());
+			UtilityL.LOG.log(Level.SEVERE, e.getMessage());
 		}
 	}
 
@@ -94,7 +94,7 @@ public class EmployeeService extends c1 {
 
 		Employee employee = new Employee();
 		try {
-			preparedStatement = connection.prepareStatement(c2.Q("q4"));
+			preparedStatement = connection.prepareStatement(UtilityQ.Q("q4"));
 			preparedStatement.setString(1, eid);
 			ResultSet R = preparedStatement.executeQuery();
 			while (R.next()) {
@@ -109,7 +109,7 @@ public class EmployeeService extends c1 {
 			employeeArrayList.add(employee);
 			employeeOutput(employeeArrayList);
 		} catch (Exception e) {
-			c1.LOG.log(Level.SEVERE, e.getMessage());
+			UtilityL.LOG.log(Level.SEVERE, e.getMessage());
 		}
 	}
 
@@ -117,12 +117,12 @@ public class EmployeeService extends c1 {
 	public void deleteEmployee(String eid) {
 
 		try {
-			preparedStatement = connection.prepareStatement(c2.Q("q6"));
+			preparedStatement = connection.prepareStatement(UtilityQ.Q("q6"));
 			preparedStatement.setString(1, eid);
 			preparedStatement.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
-			c1.LOG.log(Level.SEVERE, e.getMessage());
+			UtilityL.LOG.log(Level.SEVERE, e.getMessage());
 		}
 	}
 
@@ -130,7 +130,7 @@ public class EmployeeService extends c1 {
 	public void getEmployees() {
 		ArrayList<Employee> employeeList = new ArrayList<Employee>();
 		try {
-			preparedStatement = connection.prepareStatement(c2.Q("q5"));
+			preparedStatement = connection.prepareStatement(UtilityQ.Q("q5"));
 			ResultSet r = preparedStatement.executeQuery();
 			while (r.next()) {
 				Employee employee = new Employee();
@@ -143,7 +143,7 @@ public class EmployeeService extends c1 {
 				employeeList.add(employee);
 			}
 		} catch (Exception e) {
-			c1.LOG.log(Level.SEVERE, e.getMessage());
+			UtilityL.LOG.log(Level.SEVERE, e.getMessage());
 		}
 		employeeOutput(employeeList);
 	}

@@ -23,7 +23,7 @@ public class Main {
 
 		//Handling Exceptions
 		try {
-			c3.requestTransform();
+			UtilityTransform.requestTransform();
 
 			employeeService.getEmployeesFromXML();
 			employeeService.employeeCreateTable();
@@ -33,7 +33,7 @@ public class Main {
 			employeeService.getEmployees();
 
 		} catch (TransformerFactoryConfigurationError | Exception e) {
-			c1.LOG.log(Level.SEVERE, e.getMessage());
+			UtilityL.LOG.log(Level.SEVERE, e.getMessage());
 		}
 
 	}

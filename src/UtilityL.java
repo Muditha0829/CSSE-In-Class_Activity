@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 
-public class c1 {
+public class UtilityL {
 
 	//Initialize variables
 	public static final Properties property = new Properties();
@@ -14,10 +14,10 @@ public class c1 {
 
 	static {
 		try {
-			property.load(c2.class.getResourceAsStream("../config/config.properties"));
+			property.load(UtilityQ.class.getResourceAsStream("../config/config.properties"));
 		}
 		catch (NullPointerException | IOException e) {
-			c1.LOG.log(Level.SEVERE, e.getMessage());
+			UtilityL.LOG.log(Level.SEVERE, e.getMessage());
 		}
 	}
 }
