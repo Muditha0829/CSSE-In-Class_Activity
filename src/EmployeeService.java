@@ -37,9 +37,9 @@ public class EmployeeService extends c1 {
 	public void getEmployeesFromXML() {
 
 		try {
-			int s = c3.XMLXPATHS().size();
+			int s = c3.xmlPaths().size();
 			for (int i = 0; i < s; i++) {
-				Map<String, String> l = c3.XMLXPATHS().get(i);
+				Map<String, String> l = c3.xmlPaths().get(i);
 				Employee employee = new Employee();
 				employee.setEmployeeId(l.get("XpathEmployeeIDKey"));
 				employee.setFullName(l.get("XpathEmployeeNameKey"));

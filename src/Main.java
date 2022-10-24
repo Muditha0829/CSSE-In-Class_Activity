@@ -1,17 +1,10 @@
-import org.xml.sax.SAXException;
 
-import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactoryConfigurationError;
-import javax.xml.xpath.XPathExpressionException;
-import java.io.IOException;
-import java.sql.SQLException;
 import java.util.logging.Level;
 
 public class Main {
 
 	/**
-	 * @param args
-	 *
 	 * @throws NullPointerException
 	 * 			-Thrown when an application attempts to use null in a case where an object is required
 	 *
