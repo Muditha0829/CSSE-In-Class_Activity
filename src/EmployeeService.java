@@ -151,13 +151,23 @@ public class EmployeeService extends c1 {
 	//Display employees data fetched from the database
 	public void employeeOutput(ArrayList<Employee> l){
 		
-		System.out.println("Employee ID" + "\t\t" + "Full Name" + "\t\t" + "Address" + "\t\t" + "Faculty Name" + "\t\t"
-				+ "Department" + "\t\t" + "Designation" + "\n");
+		System.out.println( "Employee ID" + "\t\t" +
+							"Full Name" + "\t\t" +
+							"Address" + "\t\t" +
+							"Faculty Name" + "\t\t" +
+							"Department" + "\t\t" +
+							"Designation" + "\n");
+
 		System.out.println("================================================================================================================");
+
 		for (Employee employee : l) {
-			System.out.println(employee.getEmployeeId() + "\t" + employee.getFullName() + "\t\t"
-					+ employee.getAddress() + "\t" + employee.getFacultyName() + "\t" + employee.getDepartment() + "\t"
-					+ employee.getDesignation() + "\n");
+			System.out.println( employee.getEmployeeId() + "\t" +
+								employee.getFullName() + "\t\t" +
+								employee.getAddress() + "\t" +
+								employee.getFacultyName() + "\t" +
+								employee.getDepartment() + "\t" +
+								employee.getDesignation() + "\n");
+
 			System.out.println("----------------------------------------------------------------------------------------------------------------");
 		}
 		
