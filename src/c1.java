@@ -8,8 +8,8 @@ import java.util.Properties;
 
 public class c1 {
 
+	//Initialize variables
 	public static final Properties property = new Properties();
-
 	public static final Logger LOG = Logger.getLogger(EmployeeService.class.getName());
 
 	static {

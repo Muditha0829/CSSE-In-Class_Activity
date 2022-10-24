@@ -8,24 +8,34 @@ import java.util.logging.Level;
 
 public class EmployeeService extends c1 {
 
-	private final ArrayList<Employee> el = new ArrayList<Employee>();
+	//Declaring ArrayList for Employees
+	private final ArrayList<Employee> employeeArray = new ArrayList<Employee>();
 
-	private static Connection conn;
+	//Declaring variables for database connection
+	private static Connection connection;
+	private PreparedStatement preparedStatement;
 
-	private PreparedStatement ps;
-
+	//Creating connection for employee
 	public EmployeeService() {
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			conn = DriverManager.getConnection(property.getProperty("url"), property.getProperty("username"),
-					property.getProperty("password"));
+			//Check for existing connection using singleton
+			if(connection==null){
+				//Establishing connection with the database
+				Class.forName("com.mysql.jdbc.Driver");
+				connection = DriverManager.getConnection(property.getProperty("url"), property.getProperty("username"),
+						property.getProperty("password"));
+			}else {
+
+				c1.LOG.info("Connection already exists");
+			}
 		} catch (SQLException | ClassNotFoundException e) {
 			c1.LOG.log(Level.SEVERE, e.getMessage());
 		}
 	}
 
+	//Get data from xml
 	public void getEmployeesFromXML() {
-	//getfromxml
+
 		try {
 			int s = c3.XMLXPATHS().size();
 			for (int i = 0; i < s; i++) {
@@ -37,7 +47,7 @@ public class EmployeeService extends c1 {
 				employee.setFacultyName(l.get("XpathFacultyNameKey"));
 				employee.setDepartment(l.get("XpathDepartmentKey"));
 				employee.setDesignation(l.get("XpathDesignationKey"));
-				el.add(employee);
+				employeeArray.add(employee);
 				System.out.println(employee.toString() + "\n");
 			}
 		} catch (Exception e) {
@@ -45,10 +55,11 @@ public class EmployeeService extends c1 {
 		}
 	}
 
+	//Connect with the table in the database
 	public void employeeCreateTable() {
 		//
 		try {
-			Statement s = conn.createStatement();
+			Statement s = connection.createStatement();
 			s.executeUpdate(c2.Q("q2"));
 			s.executeUpdate(c2.Q("q1"));
 		} catch (Exception e) {
@@ -56,34 +67,36 @@ public class EmployeeService extends c1 {
 		}
 	}
 
+	//Adding employees to the database
 	public void addEmployee() {
 		//add employee
 		try {
-			ps = conn.prepareStatement(c2.Q("q3"));
-			conn.setAutoCommit(false);
-			for (Employee e : el) {
-				ps.setString(1, e.getEmployeeId());
-				ps.setString(2, e.getFullName());
-				ps.setString(3, e.getAddress());
-				ps.setString(4, e.getFacultyName());
-				ps.setString(5, e.getDepartment());
-				ps.setString(6, e.getDesignation());
-				ps.addBatch();
+			preparedStatement = connection.prepareStatement(c2.Q("q3"));
+			connection.setAutoCommit(false);
+			for (Employee e : employeeArray) {
+				preparedStatement.setString(1, e.getEmployeeId());
+				preparedStatement.setString(2, e.getFullName());
+				preparedStatement.setString(3, e.getAddress());
+				preparedStatement.setString(4, e.getFacultyName());
+				preparedStatement.setString(5, e.getDepartment());
+				preparedStatement.setString(6, e.getDesignation());
+				preparedStatement.addBatch();
 			}
-			ps.executeBatch();
-			conn.commit();
+			preparedStatement.executeBatch();
+			connection.commit();
 		} catch (Exception e) {
 			c1.LOG.log(Level.SEVERE, e.getMessage());
 		}
 	}
 
+	//Get employee data from the database by employeeId
 	public void getEmployeeID(String eid) {
 
 		Employee employee = new Employee();
 		try {
-			ps = conn.prepareStatement(c2.Q("q4"));
-			ps.setString(1, eid);
-			ResultSet R = ps.executeQuery();
+			preparedStatement = connection.prepareStatement(c2.Q("q4"));
+			preparedStatement.setString(1, eid);
+			ResultSet R = preparedStatement.executeQuery();
 			while (R.next()) {
 				employee.setEmployeeId(R.getString(1));
 				employee.setFullName(R.getString(2));
@@ -92,32 +105,33 @@ public class EmployeeService extends c1 {
 				employee.setDepartment(R.getString(5));
 				employee.setDesignation(R.getString(6));
 			}
-			ArrayList<Employee> l = new ArrayList<Employee>();
-			l.add(employee);
-			employeeOutput(l);
+			ArrayList<Employee> employeeArrayList = new ArrayList<Employee>();
+			employeeArrayList.add(employee);
+			employeeOutput(employeeArrayList);
 		} catch (Exception e) {
 			c1.LOG.log(Level.SEVERE, e.getMessage());
 		}
 	}
 
+	//Delete employee data by employeeId
 	public void deleteEmployee(String eid) {
 
 		try {
-			ps = conn.prepareStatement(c2.Q("q6"));
-			ps.setString(1, eid);
-			ps.executeUpdate();
+			preparedStatement = connection.prepareStatement(c2.Q("q6"));
+			preparedStatement.setString(1, eid);
+			preparedStatement.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 			c1.LOG.log(Level.SEVERE, e.getMessage());
 		}
 	}
 
+	//Get all employee data from the database
 	public void getEmployees() {
-	//get employees
 		ArrayList<Employee> employeeList = new ArrayList<Employee>();
 		try {
-			ps = conn.prepareStatement(c2.Q("q5"));
-			ResultSet r = ps.executeQuery();
+			preparedStatement = connection.prepareStatement(c2.Q("q5"));
+			ResultSet r = preparedStatement.executeQuery();
 			while (r.next()) {
 				Employee employee = new Employee();
 				employee.setEmployeeId(r.getString(1));
@@ -133,7 +147,8 @@ public class EmployeeService extends c1 {
 		}
 		employeeOutput(employeeList);
 	}
-	
+
+	//Display employees data fetched from the database
 	public void employeeOutput(ArrayList<Employee> l){
 		
 		System.out.println("Employee ID" + "\t\t" + "Full Name" + "\t\t" + "Address" + "\t\t" + "Faculty Name" + "\t\t"

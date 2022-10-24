@@ -12,14 +12,17 @@ import org.w3c.dom.Element;
 import javax.xml.transform.TransformerConfigurationException;
 
 public class c2 extends c1 {
-	
+
+	//Initialize Variables
+	public static final String EMPLOYEE_QUERY = "src/b/c/d/EmployeeQuery.xml";
+
 	public static String Q(String id) throws Exception {
 		NodeList nodeList;
 		Element element = null;
 
 		//initialize values which were obtained by the xml file to the Nodelist object
 		nodeList = DocumentBuilderFactory.newInstance().newDocumentBuilder()
-				.parse(new File("src/e/EmployeeQuery.xml"))
+				.parse(new File(EMPLOYEE_QUERY))
 				.getElementsByTagName("query");
 
 		/*
